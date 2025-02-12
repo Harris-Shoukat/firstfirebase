@@ -17,7 +17,6 @@ const Login = () => {
       alert("Login Success")
     );
 
-    // Handle the login logic here
     console.log("User logged in:", { email, password });
   };
 

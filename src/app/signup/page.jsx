@@ -1,25 +1,22 @@
 "use client";
-import React, { useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
-import app from '../firebaseconfig';
-import Link from 'next/link';
-
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from "../firebaseconfig";
+import Link from "next/link";
 
 const auth = getAuth(app);
 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password).then((value) =>
+      alert("Login success")
+    );
 
-
-    createUserWithEmailAndPassword(auth, email, password).then(value => alert("success"))
-
-
-    // Handle the signup logic here
-    console.log('User signed up:', { email, password });
+    console.log("User signed up:", { email, password });
   };
 
   return (
@@ -28,7 +25,12 @@ const SignUp = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600" htmlFor="email">Email</label>
+            <label
+              className="block text-sm font-medium text-gray-600"
+              htmlFor="email"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -40,7 +42,12 @@ const SignUp = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600" htmlFor="password">Password</label>
+            <label
+              className="block text-sm font-medium text-gray-600"
+              htmlFor="password"
+            >
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -60,8 +67,10 @@ const SignUp = () => {
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account? 
-          <Link href="/login" className="text-blue-500 hover:text-blue-700">Log in</Link>
+          Already have an account?
+          <Link href="/login" className="text-blue-500 hover:text-blue-700">
+            Log in
+          </Link>
         </p>
       </div>
     </div>
